@@ -4,7 +4,7 @@
   "private": true,
   "exports": {
     "./styles.css": "./dist/index.css",
-    "./*": "./src/*.tsx"
+    "./*": "./src/*.ts"
   },
   "scripts": {
     "build:styles": "tailwindcss -i ./src/styles/index.css -o ./dist/index.css",
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.17",
+    "class-variance-authority": "^0.7.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tailwind-merge": "^3.3.1",

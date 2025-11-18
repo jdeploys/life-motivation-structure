@@ -1,20 +1,21 @@
-import { cn } from "@repo/ui/style/cn";
-import { Button } from "@repo/ui/src/button/Button"
+import { cn } from "@repo/ui/shared";
+import { Button } from "@repo/ui/Button";
 import Link from "next/link";
+import { PageLayout } from "@/components/layout/PageLayout";
 
 export default function Home() {
   return (
-    <div className={cn("p-6")}>
+    <PageLayout>
       <h1 className={cn("text-2xl")}>삶의 동기 알아보기</h1>
-      <div className={cn("my-12")}>
+      <div className={cn("my-12 text-center")}>
         <span>
           이 검사는 당신의 “성격”이 아니라 당신을 움직이는 연료의 종류를
           묻습니다.
           <br />
+          <br />
           동기 유형을 알면,
           <br />
           어떤 일을 할 때 가장 몰입하는지,
-          <br />
           <br />
           언제 지치고 의미를 잃는지,
           <br />
@@ -30,9 +31,15 @@ export default function Home() {
           제공합니다.
         </span>
       </div>
-      <Link href={"/analysis"}>
-        <Button>검사 시작하기</Button>
-      </Link>
-    </div>
+      <div className="flex flex-col gap-4">
+        <Link href={"/analysis"}>
+          <Button>검사 시작하기</Button>
+        </Link>
+        {/* 결과 기반으로 유추 */}
+        {/*<Link href={"/analysis"}>*/}
+        {/*  <Button>또는 유추 하기</Button>*/}
+        {/*</Link>*/}
+      </div>
+    </PageLayout>
   );
 }
