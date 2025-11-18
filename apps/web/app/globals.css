@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../node_modules/@repo/ui";
 
 @theme {
   --color-accents-red: #ff4245ff;

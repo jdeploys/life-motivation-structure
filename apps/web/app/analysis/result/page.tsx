@@ -24,7 +24,7 @@ const AnalysisResultPage = () => {
   return (
     <PageLayout>
       <h1 className={cn("text-xl")}>당신은...</h1>
-      <div className="flex flex-col gap-3 my-12">
+      <div className="flex flex-col gap-3 my-12 w-full">
         <Card>
           <div className="flex flex-col gap-3">
             <span>{result.title} 유형이에요.</span>

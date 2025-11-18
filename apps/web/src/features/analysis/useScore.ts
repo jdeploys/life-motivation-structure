@@ -16,10 +16,9 @@ export const useScore = () => {
   const setResult = () => {
     const categories = { A: 0, R: 0, E: 0, M: 0 };
     const next = answers.slice(1);
-    console.log(next);
-    if (next.find((row) => !row)) {
+    if (next.length != 16 || next.find((row) => !row)) {
       // TODO: fallback 처리
-      alert("모두 선택해주세요.");
+      alert("답변에 응답해주세요.");
       return;
     }
 

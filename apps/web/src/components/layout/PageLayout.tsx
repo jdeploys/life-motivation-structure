@@ -8,7 +8,7 @@ export interface PageLayoutProps {
 
 export const PageLayout = ({ className, children }: PageLayoutProps) => {
   return (
-    <div className={cn("flex flex-col items-center p-6", className)}>
+    <div className={cn("w-full flex flex-col items-center p-6", className)}>
       {children}
     </div>
   );

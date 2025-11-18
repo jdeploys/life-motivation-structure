@@ -14,7 +14,8 @@
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
     "check-types": "tsc --noEmit",
-    "build": "pnpm build:styles && pnpm build:components"
+    "build": "pnpm build:styles && pnpm build:components",
+    "dev": "pnpm dev:styles & pnpm dev:components"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

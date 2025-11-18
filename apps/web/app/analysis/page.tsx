@@ -16,13 +16,13 @@ const AnalysisPage = () => {
       <h1 className={cn("text-xl")}>
         현재의 상태에 가장 적절한 답을 선택해주세요.
       </h1>
-      <div className={cn("flex flex-col gap-4 my-12")}>
+      <div className={cn("flex flex-col gap-4 my-12 w-full")}>
         {question.questions.map((row, index) => (
           <Card key={row.id}>
-            <div className="flex flex-col gap-3">
-              <div>
+            <div className="flex flex-col gap-3 w-full whitespace-normal">
+              <span>
                 {index + 1}. {row.text}
-              </div>
+              </span>
               <div className="flex flex-col gap-2">
                 {(Object.keys(getAnswers()) as (keyof typeof answers)[]).map(
                   (key) => (
