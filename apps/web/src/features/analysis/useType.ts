@@ -16,7 +16,6 @@ export const useType = () => {
       return null;
     }
 
-    // 점수 내림차순 정렬
     const sorted = [...entries].sort((a, b) => b[1] - a[1]);
 
     if (!sorted[0]) {
@@ -30,25 +29,35 @@ export const useType = () => {
       return null;
     }
 
-    // 최고 점수인 코드들 모으기
-    const topCodes = sorted
-      .filter(([, score]) => score === highestScore)
-      .map(([code]) => code);
-
-    if (!topCodes[0]) {
-      return null;
-    }
+    // 1등 이후 점수들
+    const scoresAfterTop = sorted.slice(1);
 
     let key: string;
 
-    if (topCodes.length === 1) {
-      // 단독형
-      key = topCodes[0];
+    if (scoresAfterTop.length === 0) {
+      // 코드가 1개뿐인 경우 → 단독형
+      key = topCode;
     } else {
-      // 복합형 - 상위 2개만, 알파벳 순
-      const [c1, c2] = topCodes.slice(0, 2);
-      key = [c1, c2].sort().join("");
+      const secondScore = scoresAfterTop[0]?.[1];
+      const allRestSame = scoresAfterTop.every(
+        ([, score]) => score === secondScore,
+      );
+
+      if (allRestSame) {
+        // 나머지 점수가 모두 동일 → 명확한 2순위 없음 → 단독형
+        key = topCode;
+      } else {
+        // 명확한 2순위 존재 → 1등 + 2등 조합
+        const secondCode = sorted[1]?.[0];
+        if (secondCode) {
+          key = [topCode, secondCode].sort().join("");
+        } else {
+          key = topCode;
+        }
+      }
     }
+
+    console.log("key", key);
 
     // 1차: 조합 키로 조회
     if (Object.prototype.hasOwnProperty.call(typeData, key)) {
@@ -56,7 +65,7 @@ export const useType = () => {
     }
 
     // 2차: 단독형 키로 fallback
-    const fallback = topCodes[0];
+    const fallback = topCode;
     if (fallback && Object.prototype.hasOwnProperty.call(typeData, fallback)) {
       return typeData[fallback as TypeKey];
     }
