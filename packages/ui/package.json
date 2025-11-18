@@ -13,7 +13,8 @@
     "dev:components": "tsc --watch",
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "build": "pnpm build:styles && pnpm build:components"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

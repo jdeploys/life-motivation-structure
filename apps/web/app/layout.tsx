@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import localFont from "next/font/local";
 import "@repo/ui/styles.css";
 import "./globals.css";
@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="bg-zinc-900 text-white">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
       </body>
     </html>
   );
