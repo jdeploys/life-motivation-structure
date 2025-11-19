@@ -78,11 +78,17 @@ const AnalysisResultPage = () => {
             <span className="text-xl">의미 부여 구조</span>
             <span>{result.reward_structure}</span>
             <div className="w-full bg-separators-opaque h-[1px]"></div>
-            <span className="text-xl">의미 회복 패턴</span>
+            <span className="text-xl">행동 패턴</span>
             <span>{result.behavior_pattern.join('\n')}</span>
             <div className="w-full bg-separators-opaque h-[1px]"></div>
             <span className="text-xl">나를 표현하는 이미지</span>
             <span>{result.symbolic_image}</span>
+          </div>
+        </Card>
+        <Card>
+          <div className="flex flex-col gap-3">
+            <span className="text-xl">그래서 어떻게 살아야 덜 힘들까?</span>
+            <span>{result.how_to_life}</span>
           </div>
         </Card>
       </div>

@@ -2,10 +2,9 @@
 import { cn } from "@repo/ui/shared";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Card } from "@/components/card/Card";
-import question from "@/shared/data/question_1_2.json";
+import question from "@/shared/data/question_2.json";
 import { useScore } from "@/features/analysis/useScore";
 import { Button } from "@repo/ui/Button";
-import Link from "next/link";
 
 const AnalysisPage = () => {
   const { setAnswer, setResult, getAnswers } = useScore();

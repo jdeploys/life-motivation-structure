@@ -8,7 +8,7 @@ export interface CardProps {
 export const Card = ({ children }: CardProps) => (
   <div
     className={cn(
-      "bg-backgrounds-tertiary p-4 rounded-md whitespace-normal",
+      "bg-backgrounds-tertiary p-4 rounded-md whitespace-pre",
     )}
   >
     {children}
