@@ -57,6 +57,7 @@
 }
 
 span {
+    @apply whitespace-break-spaces;
     word-break: keep-all;
     overflow-wrap: break-word;
 }
