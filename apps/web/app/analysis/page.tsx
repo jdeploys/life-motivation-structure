@@ -25,23 +25,29 @@ const AnalysisPage = () => {
               <div className="flex flex-col gap-2">
                 {(Object.keys(getAnswers()) as (keyof typeof answers)[]).map(
                   (key) => (
-                    <div key={key} className="flex items-center gap-4">
-                      <input
-                        type="radio"
-                        id={`answer-${key}`}
-                        name={`question-${row.id}`}
-                        value={key}
-                        className="h-4 w-4 text-primary-600 border-gray-300 focus:ring-primary-500"
-                        onChange={(e) => {
-                          setAnswer({
-                            id: row.id,
-                            type: row.type as "A" | "R" | "E" | "M",
-                            weight: row.weight,
-                            score: Number(e.target.value || 0),
-                          });
-                        }}
-                      />
-                      <label htmlFor={`answer-${key}`}>{answers[key]}</label>
+                    <div
+                      id={`${row.id}`}
+                      key={row.id + key}
+                    >
+                      <label className='flex items-center gap-2'>
+                        <input
+                          type="radio"
+                          id={`answer-${key}`}
+                          name={`qes-${row.id}`}
+                          value={key}
+                          className="h-4 w-4 text-primary-600 border-gray-300 focus:ring-primary-500"
+                          onChange={(e) => {
+                            e.stopPropagation();
+                            setAnswer({
+                              id: row.id,
+                              type: row.type as "A" | "R" | "E" | "M",
+                              weight: row.weight,
+                              score: Number(e.target.value || 0),
+                            });
+                          }}
+                        />
+                        <span>{answers[key]}</span>
+                      </label>
                     </div>
                   ),
                 )}

@@ -16,15 +16,22 @@ export const useScore = () => {
   const setResult = () => {
     const categories = { A: 0, R: 0, E: 0, M: 0 };
     const next = answers.slice(1);
-    if (next.length != 16 || next.find((row) => !row)) {
+    if (next.length != 24 || next.find((row) => !row)) {
       // TODO: fallback 처리
       alert("답변에 응답해주세요.");
       return;
     }
 
-    next.forEach(({ type, weight, score }) => {
-      categories[type] += score * weight;
-    });
+    try {
+      next.forEach(({ type, weight, score }) => {
+        categories[type] += score * weight;
+      });
+    } catch {
+      const hash = next.findIndex((row) => !row || !row.id) + 1;
+      alert(`${hash}번 질문에 응답해주세요.`);
+      location.hash = `#${hash}`;
+      return;
+    }
 
     const total = Object.values(categories).reduce((a, b) => a + b, 0);
     const result = Object.fromEntries(
