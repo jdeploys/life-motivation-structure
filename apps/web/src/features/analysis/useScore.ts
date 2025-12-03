@@ -45,6 +45,7 @@ export const useScore = () => {
   };
 
   return {
+    answers,
     setAnswer: (answer: Answer) => {
       const next = [...answers];
       next[answer.id] = answer;

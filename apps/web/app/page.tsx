@@ -1,7 +1,7 @@
-import { cn } from "@repo/ui/shared";
-import { Button } from "@repo/ui/Button";
+import { Button } from "@repo/ui/button";
 import Link from "next/link";
 import { PageLayout } from "@/components/layout/PageLayout";
+import { cn } from "@/shared/cn";
 
 export default function Home() {
   return (

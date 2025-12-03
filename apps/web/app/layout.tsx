@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ReactNode, Suspense } from "react";
 import localFont from "next/font/local";
-import "@repo/ui/styles.css";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -24,7 +23,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="ko" className="bg-zinc-900 text-white">
+    <html lang="ko">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
       </body>

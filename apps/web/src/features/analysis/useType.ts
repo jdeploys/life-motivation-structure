@@ -50,14 +50,14 @@ export const useType = () => {
         // 명확한 2순위 존재 → 1등 + 2등 조합
         const secondCode = sorted[1]?.[0];
         if (secondCode) {
-          key = [topCode, secondCode].sort().join("");
+          key = [topCode, secondCode].join("");
         } else {
           key = topCode;
         }
       }
     }
 
-    console.log("key", key);
+    console.log("key", key, sorted);
 
     // 1차: 조합 키로 조회
     if (Object.prototype.hasOwnProperty.call(typeData, key)) {
