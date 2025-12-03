@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import question from "@/shared/data/question_2.json";
 
 interface Answer {
   id: number;
@@ -16,11 +17,6 @@ export const useScore = () => {
   const setResult = () => {
     const categories = { A: 0, R: 0, E: 0, M: 0 };
     const next = answers.slice(1);
-    if (next.length != 24 || next.find((row) => !row)) {
-      // TODO: fallback 처리
-      alert("답변에 응답해주세요.");
-      return;
-    }
 
     try {
       next.forEach(({ type, weight, score }) => {
@@ -29,8 +25,9 @@ export const useScore = () => {
     } catch {
       const hash = next.findIndex((row) => !row || !row.id) + 1;
       alert(`${hash}번 질문에 응답해주세요.`);
-      location.hash = `#${hash}`;
-      return;
+      throw Error(`${hash}번 질문에 응답해주세요.`, {
+        cause: hash,
+      });
     }
 
     const total = Object.values(categories).reduce((a, b) => a + b, 0);
@@ -44,8 +41,30 @@ export const useScore = () => {
     router.push(`/analysis/result?type=${JSON.stringify(result)}`);
   };
 
+  const hasValid = () => {
+    if (
+      question.questions.length !==
+      answers.filter((row) => !!row?.score).length
+    ) {
+      const next = answers.slice(1);
+      const target = next.findIndex((row) => !row?.score);
+
+      if (target !== -1) {
+        return target;
+      }
+    }
+
+    console.log(answers);
+    if (answers.length - 1 !== question.questions.length) {
+      return answers.length - 1;
+    }
+
+    return true;
+  }
+
   return {
     answers,
+    hasValid,
     setAnswer: (answer: Answer) => {
       const next = [...answers];
       next[answer.id] = answer;

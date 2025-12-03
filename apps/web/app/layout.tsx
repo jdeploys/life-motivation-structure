@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ReactNode, Suspense } from "react";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Toaster } from "@repo/ui/toast";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="ko">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+        <Toaster />
       </body>
     </html>
   );

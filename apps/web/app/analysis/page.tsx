@@ -13,9 +13,10 @@ import {
   CarouselPrevious,
 } from "@repo/ui/carousel";
 import { useState } from "react";
+import { toast } from "@repo/ui/toast";
 
 const AnalysisPage = () => {
-  const { answers, setAnswer, setResult, getAnswers } = useScore();
+  const { answers, hasValid, setAnswer, setResult, getAnswers } = useScore();
   const questions = getAnswers();
   const [api, setApi] = useState<CarouselApi>();
 
@@ -72,11 +73,21 @@ const AnalysisPage = () => {
       </div>
       <div>
         <Button
-          disabled={
-            question.questions.length !==
-            answers.filter((row) => !!row?.score).length
-          }
-          onClick={setResult}
+          disabled={answers.filter((row) => !!row?.score).length === 0}
+          onClick={() => {
+            const isValid = hasValid();
+            if (isValid !== true) {
+              api?.scrollTo(isValid);
+              toast(`${isValid + 1}번 문항에 답변해주세요.`);
+              return;
+            }
+
+            try {
+              setResult();
+            } catch {
+              toast('오류가 발생했어요.')
+            }
+          }}
         >
           결과 보기
         </Button>
