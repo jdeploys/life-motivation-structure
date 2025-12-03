@@ -54,7 +54,6 @@ export const useScore = () => {
       }
     }
 
-    console.log(answers);
     if (answers.length - 1 !== question.questions.length) {
       return answers.length - 1;
     }

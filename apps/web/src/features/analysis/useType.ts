@@ -57,8 +57,6 @@ export const useType = () => {
       }
     }
 
-    console.log("key", key, sorted);
-
     // 1차: 조합 키로 조회
     if (Object.prototype.hasOwnProperty.call(typeData, key)) {
       return typeData[key as TypeKey];
