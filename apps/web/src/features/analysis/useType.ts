@@ -4,9 +4,16 @@ type BaseCode = "A" | "R" | "E" | "M";
 type Categories = Record<BaseCode, number>;
 type TypeData = typeof typeData;
 type TypeKey = keyof TypeData;
-type TypeInfo = TypeData[TypeKey];
+export type TypeInfo = TypeData[TypeKey];
 
 export const useType = () => {
+  function getMotivoTypeForString(type: string): TypeInfo | null {
+    if (Object.prototype.hasOwnProperty.call(Object(typeData), type)) {
+      return typeData[type as TypeKey];
+    }
+    return null;
+  }
+
   function getMotivoType(categories: Categories): TypeInfo | null {
     // entries 변환 (타입 단언으로 확실히 좁혀줌)
     const entries = Object.entries(categories) as [BaseCode, number][];
@@ -73,5 +80,6 @@ export const useType = () => {
   }
   return {
     getMotivoType,
+    getMotivoTypeForString
   };
 };
